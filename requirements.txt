@@ -1,0 +1,6 @@
+python-telegram-bot
+pytest
+pytest-asyncio
+flake8
+black
+sentry-sdk
