@@ -26,7 +26,7 @@ jobs:
     - name: Run tests
       run: |
         echo "Running tests..."
-        # Добавьте команды для запуска ваших тестов здесь
+        # Добавьте команды для запуска ваших тестов здесь123
 
     - name: Lint with flake8
       run: |
