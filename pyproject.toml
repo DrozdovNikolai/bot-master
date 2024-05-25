@@ -29,7 +29,8 @@ bot = "python -m krddevbot"
 
 
 [tool.pdm.dev-dependencies]
+    flake8 = "^3.9.2"
 dev = [
     "pytest>=8.0.0",
-    flake8 = "^3.9.2"
+
 ]
