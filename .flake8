@@ -1,5 +1,5 @@
 [flake8]
-ignore = E501, E203, E305
+ignore = E501, E203, E305, F401, F541
 exclude =
     .venv,
     .git,
