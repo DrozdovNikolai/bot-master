@@ -56,7 +56,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
     - name: Add SSH key
-      uses: webfactory/ssh-agent@v0.5.3, actions/checkout@v2
+      uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
