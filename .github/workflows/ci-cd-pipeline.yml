@@ -38,7 +38,7 @@ jobs:
     - name: Build Podman image
       run: |
         podman build -t docker.io/drozdovnikolai/telegram-bot:${{ github.sha }} .
-        podman tag docker.io/drozdovnikolai/telegram-bot:${{ github.sha }} docker.io/myusername/telegram-bot:latest
+        podman tag docker.io/drozdovnikolai/telegram-bot:${{ github.sha }} docker.io/drozdovnikolai/telegram-bot:latest
 
     - name: Login to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | podman login docker.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
