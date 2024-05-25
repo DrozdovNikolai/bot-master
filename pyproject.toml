@@ -11,6 +11,7 @@ requires-python = ">=3.10"
 dependencies = [
     "python-telegram-bot[job-queue]>=20.8",
     "sentry-sdk>=1.39.2",
+    
 ]
 
 [project.urls]
@@ -25,8 +26,10 @@ _.env_file = ".env"
 bot = "python -m krddevbot"  
 
 # dev run: nodemon -e py --exec pdm run bot
-
+[tool.pdm.dev-dependencies]
+flake8 = "^3.9.2"
 [tool.pdm.dev-dependencies]
 dev = [
     "pytest>=8.0.0",
+    
 ]
