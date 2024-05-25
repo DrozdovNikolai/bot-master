@@ -25,26 +25,28 @@ jobs:
 
     - name: Install dependencies using PDM
       run: |
-        pdm lock --update-reuse
+        pdm lock
         pdm sync
 
     - name: Run tests
       run: |
         echo "Running tests..."
-        # Здесь добавьте команды для запуска ваших тестов
+        pdm run pytest
 
 
 
     - name: Build Podman image
       run: |
-        podman build -t drozdovnikolai/telegram-bot:${{ github.sha }} .
-        podman tag drozdovnikolai/telegram-bot:${{ github.sha }} myusername/telegram-bot:latest
+        podman build -t docker.io/drozdovnikolai/telegram-bot:${{ github.sha }} .
+        podman tag docker.io/drozdovnikolai/telegram-bot:${{ github.sha }} docker.io/myusername/telegram-bot:latest
+
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | podman login docker.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
     - name: Push Podman image
       run: |
-        echo "${{ secrets.DOCKER_PASSWORD }}" | podman login docker.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-        podman push drozdovnikolai/telegram-bot:${{ github.sha }}
-        podman push drozdovnikolai/telegram-bot:latest
+        podman push docker.io/drozdovnikolai/telegram-bot:${{ github.sha }}
+        podman push docker.io/drozdovnikolai/telegram-bot:latest
 
   deploy:
     needs: build-and-test
@@ -59,8 +61,8 @@ jobs:
     - name: Deploy
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-        podman pull myusername/telegram-bot:latest
+        podman pull docker.io/myusername/telegram-bot:latest
         podman stop telegram_bot || true
         podman rm telegram_bot || true
-        podman run -d --name telegram_bot --network="host" -p 5000:5000 myusername/telegram-bot:latest
+        podman run -d --name telegram_bot --network="host" -p 5000:5000 docker.io/myusername/telegram-bot:latest
         EOF
