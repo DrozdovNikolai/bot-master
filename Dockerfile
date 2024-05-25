@@ -18,4 +18,4 @@ EXPOSE 5000
 ENV NAME World
 
 # Запустите app.py при запуске контейнера
-CMD ["pdm", "run", "python", "./your_script.py"]
+CMD ["pdm", "run", "python", "./__main__.py"]
