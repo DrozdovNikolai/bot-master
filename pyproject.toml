@@ -26,10 +26,10 @@ _.env_file = ".env"
 bot = "python -m krddevbot"  
 
 # dev run: nodemon -e py --exec pdm run bot
-[tool.pdm.dev-dependencies]
-flake8 = "^3.9.2"
+
+
 [tool.pdm.dev-dependencies]
 dev = [
     "pytest>=8.0.0",
-    
+    flake8 = "^3.9.2"
 ]
