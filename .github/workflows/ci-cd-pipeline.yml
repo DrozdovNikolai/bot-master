@@ -56,15 +56,15 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
     - name: Add SSH key
-      uses: webfactory/ssh-agent@v0.5.3
+      uses: webfactory/ssh-agent@v0.5.3, actions/checkout@v2
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Deploy
       run: |
         ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} << 'EOF'
-        podman pull docker.io/drozdovnikolai/telegram-bot:latest
         podman stop telegram_bot || true
         podman rm telegram_bot || true
+        podman pull docker.io/drozdovnikolai/telegram-bot:latest
         podman run -d --name telegram_bot docker.io/drozdovnikolai/telegram-bot:latest
         EOF
