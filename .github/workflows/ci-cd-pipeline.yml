@@ -25,6 +25,7 @@ jobs:
 
     - name: Install dependencies using PDM
       run: |
+        pdm lock --update-reuse
         pdm sync
 
     - name: Run tests
