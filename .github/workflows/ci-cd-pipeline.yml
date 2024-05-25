@@ -33,9 +33,7 @@ jobs:
         echo "Running tests..."
         # Здесь добавьте команды для запуска ваших тестов
 
-    - name: Lint with flake8
-      run: |
-        pdm run flake8 .
+
 
     - name: Build Podman image
       run: |

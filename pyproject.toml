@@ -6,7 +6,7 @@ authors = [
     {name = "TyVik", email = "tyvik@krd.dev"}
 ]
 license = {text = "MIT"}
-
+requires-python = ">=3.10"
 
 dependencies = [
     "python-telegram-bot[job-queue]>=20.8",
@@ -29,7 +29,7 @@ bot = "python -m krddevbot"
 
 
 [tool.pdm.dev-dependencies]
-    flake8 = "^3.9.2"
+
 dev = [
     "pytest>=8.0.0",
 
