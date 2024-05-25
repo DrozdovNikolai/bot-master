@@ -66,5 +66,5 @@ jobs:
         podman pull docker.io/drozdovnikolai/telegram-bot:latest
         podman stop telegram_bot || true
         podman rm telegram_bot || true
-        podman run -d --name telegram_bot --network="host" -p 5000:5000 docker.io/drozdovnikolai/telegram-bot:latest
+        podman run -d --name telegram_bot docker.io/drozdovnikolai/telegram-bot:latest
         EOF
